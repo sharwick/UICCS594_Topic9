@@ -8,8 +8,7 @@ size = MPI.COMM_WORLD.Get_size()
 rank = MPI.COMM_WORLD.Get_rank()
 name = MPI.Get_processor_name()
 
-#sys.stdout.write("Helloworld! I am process %d of %d on %s.\n" % (rank, size, name))
-
+# Process 0 divides up the data and sends bounds to each other node
 if rank == 0:
 	if len(sys.argv) != 5:
 		sys.stdout.write("Error: Incorrect number of arguments.\n")
@@ -22,10 +21,7 @@ if rank == 0:
 	nproc = xpartitions*ypartitions*zpartitions
 
 	sys.stdout.write("(datafile, xpartitions, ypartitions, zpartitions) = (%s, %d, %d, %d).\n" % (datafile, xpartitions, ypartitions, zpartitions))
-
 	sys.stdout.write("nproc = %d\n" % (nproc))
-
-
 	sys.stdout.write("Reading data\n")
 
 
@@ -39,9 +35,9 @@ if rank == 0:
 	dataFloat = np.fromfile(ffloat, dtype=np.float32)
 	data = dataFloat[3:].reshape(xN,yN,zN)
 
-	xSize = math.floor(xN/xpartitions)
-	ySize = math.floor(yN/ypartitions)
-	zSize = math.floor(zN/zpartitions)
+	xSize = int(math.floor(xN/xpartitions))
+	ySize = int(math.floor(yN/ypartitions))
+	zSize = int(math.floor(zN/zpartitions))
 
 	sys.stdout.write("Shape of data = %s\n" % (str(data.shape)))
 
@@ -59,21 +55,30 @@ if rank == 0:
 
 				proc = 1+ z*ypartitions*xpartitions + y*xpartitions + x
 				sys.stdout.write("Subvolume <%d,%d> <%d,%d> <%d,%d> is assigned to process %d\n" % (xmin,xmax,ymin,ymax,zmin,zmax,proc))				
-
-	
-				#comm.Send([[xmin,xmax,ymin,ymax,zmin,zmax],MPI.INT],dest=proc,tag=77)
-				toSend = np.array([xmin,xmax,ymin,ymax,zmin,zmax])
+				toSend = np.array([xmin,xmax,ymin,ymax,zmin,zmax],dtype=np.int32)
 				comm.Send([toSend,MPI.INT],dest=proc,tag=77)
-# 2 + 2*3 + 2*3*3 = 2 + 6 + 18 = `26
 
+				sys.stdout.write("Sent: %s\n" % (str(toSend)))
+
+
+# Individual nodes receive their data bounds
 else:
-	comm.Recv([data,MPI.INT],dest=proc,tag=77)
+	data = np.arange(6, dtype='i')
+	comm.Recv([data,MPI.INT],source=0,tag=77)
 	[xmin,xmax,ymin,ymax,zmin,zmax] = np.asarray(data)
-	sys.stdout.write("Process %d received %s\n" %(rank, [xmin,xmax,ymin,ymax,zmin,zmax]))
+	sys.stdout.write("Process %d received %s\n" %(rank, str([xmin,xmax,ymin,ymax,zmin,zmax])))
 
+
+sys.stdout.write("Process %d: %s\n" % (rank, str(data.shape)))
+
+# Broadcast data.  Each node keeps only the data assigned to it.
 comm.Barrier()
 data = comm.bcast(data, root=0)
+
+
 comm.Barrier()
 
 
-sys.stdout.write("Process %d: %s\n" % (rank, str(data.shape())))
+# Each node calculates its mean and reports to node 0, which then calculates total mean.
+
+
