@@ -47,5 +47,5 @@ module use /sw/new-bw-python-modules
 module swap PrgEnv-cray PrgEnv-gnu
 module load bw-python
 
-aprun -n 9 python /u/training/tra834/topic9/topic9.py /u/training/tra834/data/isabelPressureWithHeader.raw 2 2 2  > out.$PBS_JOBID
+aprun -n 9 python /u/training/tra834/topic9/topic9_task1.py /u/training/tra834/data/isabelPressureWithHeader.raw 2 2 2  > out.$PBS_JOBID
 
