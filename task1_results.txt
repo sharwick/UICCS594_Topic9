@@ -1,0 +1,559 @@
+(datafile, xpartitions, ypartitions, zpartitions) = (/u/training/tra834/data/isabelPressureWithHeader.raw, 2, 2, 2).
+nproc = 8
+Reading data
+Shape of data = (500, 500, 100)
+Subvolume <0,249> <0,249> <0,49> is assigned to process 1
+Process 1 received [0, 249, 0, 249, 0, 49]
+Process 1: (6,)
+
+Sent: [  0 249   0 249   0  49]
+Subvolume <250,499> <0,249> <0,49> is assigned to process 2
+Process 2 received [250, 499, 0, 249, 0, 49]
+Process 2: (6,)
+
+Sent: [250 499   0 249   0  49]
+Subvolume <0,249> <250,499> <0,49> is assigned to process 3
+Process 3 received [0, 249, 250, 499, 0, 49]
+Process 3: (6,)
+
+Sent: [  0 249 250 499   0  49]
+Subvolume <250,499> <250,499> <0,49> is assigned to process 4
+Process 4 received [250, 499, 250, 499, 0, 49]
+Process 4: (6,)
+
+Sent: [250 499 250 499   0  49]
+Subvolume <0,249> <0,249> <50,99> is assigned to process 5
+Process 5 received [0, 249, 0, 249, 50, 99]
+Process 5: (6,)
+
+Sent: [  0 249   0 249  50  99]
+Subvolume <250,499> <0,249> <50,99> is assigned to process 6
+Process 6 received [250, 499, 0, 249, 50, 99]
+Process 6: (6,)
+
+Sent: [250 499   0 249  50  99]
+Subvolume <0,249> <250,499> <50,99> is assigned to process 7
+Process 7 received [0, 249, 250, 499, 50, 99]
+Process 7: (6,)
+
+Sent: [  0 249 250 499  50  99]
+Subvolume <250,499> <250,499> <50,99> is assigned to process 8
+Process 8 received [250, 499, 250, 499, 50, 99]
+Process 8: (6,)
+
+Sent: [250 499 250 499  50  99]
+Process 0: (500, 500, 100)
+
+(zmin, zmax,zN) = (50, 99,100)
+Broadcasting slice = 0
+Broadcasting slice = 1
+Process 1 received slice 0
+Process 4 received slice 0
+Process 3 received slice 0
+Process 2 received slice 0
+Broadcasting slice = 2
+Process 4 received slice 1
+Process 1 received slice 1
+Process 2 received slice 1
+Process 3 received slice 1
+Broadcasting slice = 3
+Process 4 received slice 2
+Process 1 received slice 2
+Process 3 received slice 2
+Process 2 received slice 2
+Broadcasting slice = 4
+Process 4 received slice 3
+Process 1 received slice 3
+Process 2 received slice 3
+Process 3 received slice 3
+Broadcasting slice = 5
+Process 4 received slice 4
+Process 1 received slice 4
+Process 3 received slice 4
+Process 2 received slice 4
+Broadcasting slice = 6
+Process 4 received slice 5
+Process 1 received slice 5
+Process 3 received slice 5
+Process 2 received slice 5
+Broadcasting slice = 7
+Process 4 received slice 6
+Process 1 received slice 6
+Process 2 received slice 6
+Process 3 received slice 6
+Broadcasting slice = 8
+Process 4 received slice 7
+Process 1 received slice 7
+Process 3 received slice 7
+Process 2 received slice 7
+Broadcasting slice = 9
+Process 4 received slice 8
+Process 1 received slice 8
+Process 2 received slice 8
+Process 3 received slice 8
+Broadcasting slice = 10
+Process 4 received slice 9
+Process 1 received slice 9
+Process 3 received slice 9
+Process 2 received slice 9
+Broadcasting slice = 11
+Process 4 received slice 10
+Process 1 received slice 10
+Process 3 received slice 10
+Process 2 received slice 10
+Broadcasting slice = 12
+Process 4 received slice 11
+Process 1 received slice 11
+Process 2 received slice 11
+Process 3 received slice 11
+Broadcasting slice = 13
+Process 4 received slice 12
+Process 1 received slice 12
+Process 2 received slice 12
+Process 3 received slice 12
+Broadcasting slice = 14
+Process 4 received slice 13
+Process 1 received slice 13
+Process 3 received slice 13
+Process 2 received slice 13
+Broadcasting slice = 15
+Process 4 received slice 14
+Process 1 received slice 14
+Process 3 received slice 14
+Process 2 received slice 14
+Broadcasting slice = 16
+Process 4 received slice 15
+Process 1 received slice 15
+Process 2 received slice 15
+Process 3 received slice 15
+Broadcasting slice = 17
+Process 4 received slice 16
+Process 1 received slice 16
+Process 2 received slice 16
+Process 3 received slice 16
+Broadcasting slice = 18
+Process 4 received slice 17
+Process 1 received slice 17
+Process 3 received slice 17
+Process 2 received slice 17
+Broadcasting slice = 19
+Process 4 received slice 18
+Process 1 received slice 18
+Process 2 received slice 18
+Process 3 received slice 18
+Broadcasting slice = 20
+Process 4 received slice 19
+Process 1 received slice 19
+Process 3 received slice 19
+Process 2 received slice 19
+Broadcasting slice = 21
+Process 4 received slice 20
+Process 1 received slice 20
+Process 3 received slice 20
+Process 2 received slice 20
+Broadcasting slice = 22
+Process 4 received slice 21
+Process 1 received slice 21
+Process 3 received slice 21
+Process 2 received slice 21
+Broadcasting slice = 23
+Process 4 received slice 22
+Process 1 received slice 22
+Process 2 received slice 22
+Process 3 received slice 22
+Broadcasting slice = 24
+Process 4 received slice 23
+Process 1 received slice 23
+Process 2 received slice 23
+Process 3 received slice 23
+Broadcasting slice = 25
+Process 4 received slice 24
+Process 1 received slice 24
+Process 3 received slice 24
+Process 2 received slice 24
+Broadcasting slice = 26
+Process 4 received slice 25
+Process 1 received slice 25
+Process 3 received slice 25
+Process 2 received slice 25
+Broadcasting slice = 27
+Process 4 received slice 26
+Process 1 received slice 26
+Process 2 received slice 26
+Process 3 received slice 26
+Broadcasting slice = 28
+Process 4 received slice 27
+Process 1 received slice 27
+Process 2 received slice 27
+Process 3 received slice 27
+Broadcasting slice = 29
+Process 4 received slice 28
+Process 1 received slice 28
+Process 2 received slice 28
+Process 3 received slice 28
+Broadcasting slice = 30
+Process 4 received slice 29
+Process 1 received slice 29
+Process 3 received slice 29
+Process 2 received slice 29
+Broadcasting slice = 31
+Process 4 received slice 30
+Process 1 received slice 30
+Process 3 received slice 30
+Process 2 received slice 30
+Broadcasting slice = 32
+Process 4 received slice 31
+Process 1 received slice 31
+Process 2 received slice 31
+Process 3 received slice 31
+Broadcasting slice = 33
+Process 4 received slice 32
+Process 1 received slice 32
+Process 2 received slice 32
+Process 3 received slice 32
+Broadcasting slice = 34
+Process 4 received slice 33
+Process 1 received slice 33
+Process 3 received slice 33
+Process 2 received slice 33
+Broadcasting slice = 35
+Process 4 received slice 34
+Process 1 received slice 34
+Process 2 received slice 34
+Process 3 received slice 34
+Broadcasting slice = 36
+Process 4 received slice 35
+Process 1 received slice 35
+Process 3 received slice 35
+Process 2 received slice 35
+Broadcasting slice = 37
+Process 4 received slice 36
+Process 1 received slice 36
+Process 2 received slice 36
+Process 3 received slice 36
+Broadcasting slice = 38
+Process 4 received slice 37
+Process 1 received slice 37
+Process 2 received slice 37
+Process 3 received slice 37
+Broadcasting slice = 39
+Process 4 received slice 38
+Process 1 received slice 38
+Process 2 received slice 38
+Process 3 received slice 38
+Broadcasting slice = 40
+Process 4 received slice 39
+Process 1 received slice 39
+Process 2 received slice 39
+Process 3 received slice 39
+Broadcasting slice = 41
+Process 4 received slice 40
+Process 1 received slice 40
+Process 3 received slice 40
+Process 2 received slice 40
+Broadcasting slice = 42
+Process 4 received slice 41
+Process 1 received slice 41
+Process 3 received slice 41
+Process 2 received slice 41
+Broadcasting slice = 43
+Process 4 received slice 42
+Process 1 received slice 42
+Process 3 received slice 42
+Process 2 received slice 42
+Broadcasting slice = 44
+Process 4 received slice 43
+Process 1 received slice 43
+Process 3 received slice 43
+Process 2 received slice 43
+Broadcasting slice = 45
+Process 4 received slice 44
+Process 1 received slice 44
+Process 3 received slice 44
+Process 2 received slice 44
+Broadcasting slice = 46
+Process 4 received slice 45
+Process 1 received slice 45
+Process 3 received slice 45
+Process 2 received slice 45
+Broadcasting slice = 47
+Process 4 received slice 46
+Process 1 received slice 46
+Process 3 received slice 46
+Process 2 received slice 46
+Broadcasting slice = 48
+Process 4 received slice 47
+Process 1 received slice 47
+Process 3 received slice 47
+Process 2 received slice 47
+Broadcasting slice = 49
+Process 4 received slice 48
+Process 1 received slice 48
+Process 2 received slice 48
+Process 3 received slice 48
+Broadcasting slice = 50
+Process 4 received slice 49
+Process 1 received slice 49
+Process 2 received slice 49
+Process 3 received slice 49
+Broadcasting slice = 51
+Process 8 received slice 50
+Process 5 received slice 50
+Process 7 received slice 50
+Process 6 received slice 50
+Broadcasting slice = 52
+Process 8 received slice 51
+Process 5 received slice 51
+Process 7 received slice 51
+Process 6 received slice 51
+Broadcasting slice = 53
+Process 8 received slice 52
+Process 5 received slice 52
+Process 6 received slice 52
+Process 7 received slice 52
+Broadcasting slice = 54
+Process 8 received slice 53
+Process 5 received slice 53
+Process 6 received slice 53
+Process 7 received slice 53
+Broadcasting slice = 55
+Process 8 received slice 54
+Process 5 received slice 54
+Process 6 received slice 54
+Process 7 received slice 54
+Broadcasting slice = 56
+Process 8 received slice 55
+Process 5 received slice 55
+Process 6 received slice 55
+Process 7 received slice 55
+Broadcasting slice = 57
+Process 8 received slice 56
+Process 5 received slice 56
+Process 7 received slice 56
+Process 6 received slice 56
+Broadcasting slice = 58
+Process 8 received slice 57
+Process 5 received slice 57
+Process 6 received slice 57
+Process 7 received slice 57
+Broadcasting slice = 59
+Process 8 received slice 58
+Process 5 received slice 58
+Process 6 received slice 58
+Process 7 received slice 58
+Broadcasting slice = 60
+Process 8 received slice 59
+Process 5 received slice 59
+Process 7 received slice 59
+Process 6 received slice 59
+Broadcasting slice = 61
+Process 8 received slice 60
+Process 5 received slice 60
+Process 7 received slice 60
+Process 6 received slice 60
+Broadcasting slice = 62
+Process 8 received slice 61
+Process 5 received slice 61
+Process 7 received slice 61
+Process 6 received slice 61
+Broadcasting slice = 63
+Process 8 received slice 62
+Process 5 received slice 62
+Process 7 received slice 62
+Process 6 received slice 62
+Broadcasting slice = 64
+Process 8 received slice 63
+Process 5 received slice 63
+Process 6 received slice 63
+Process 7 received slice 63
+Broadcasting slice = 65
+Process 8 received slice 64
+Process 5 received slice 64
+Process 7 received slice 64
+Process 6 received slice 64
+Broadcasting slice = 66
+Process 8 received slice 65
+Process 5 received slice 65
+Process 7 received slice 65
+Process 6 received slice 65
+Broadcasting slice = 67
+Process 8 received slice 66
+Process 5 received slice 66
+Process 6 received slice 66
+Process 7 received slice 66
+Broadcasting slice = 68
+Process 8 received slice 67
+Process 5 received slice 67
+Process 6 received slice 67
+Process 7 received slice 67
+Broadcasting slice = 69
+Process 8 received slice 68
+Process 5 received slice 68
+Process 6 received slice 68
+Process 7 received slice 68
+Broadcasting slice = 70
+Process 8 received slice 69
+Process 5 received slice 69
+Process 7 received slice 69
+Process 6 received slice 69
+Broadcasting slice = 71
+Process 8 received slice 70
+Process 5 received slice 70
+Process 7 received slice 70
+Process 6 received slice 70
+Broadcasting slice = 72
+Process 8 received slice 71
+Process 5 received slice 71
+Process 6 received slice 71
+Process 7 received slice 71
+Broadcasting slice = 73
+Process 8 received slice 72
+Process 5 received slice 72
+Process 7 received slice 72
+Process 6 received slice 72
+Broadcasting slice = 74
+Process 8 received slice 73
+Process 5 received slice 73
+Process 7 received slice 73
+Process 6 received slice 73
+Broadcasting slice = 75
+Process 8 received slice 74
+Process 5 received slice 74
+Process 6 received slice 74
+Process 7 received slice 74
+Broadcasting slice = 76
+Process 8 received slice 75
+Process 5 received slice 75
+Process 7 received slice 75
+Process 6 received slice 75
+Broadcasting slice = 77
+Process 8 received slice 76
+Process 5 received slice 76
+Process 6 received slice 76
+Process 7 received slice 76
+Broadcasting slice = 78
+Process 8 received slice 77
+Process 5 received slice 77
+Process 6 received slice 77
+Process 7 received slice 77
+Broadcasting slice = 79
+Process 8 received slice 78
+Process 5 received slice 78
+Process 6 received slice 78
+Process 7 received slice 78
+Broadcasting slice = 80
+Process 8 received slice 79
+Process 5 received slice 79
+Process 7 received slice 79
+Process 6 received slice 79
+Broadcasting slice = 81
+Process 8 received slice 80
+Process 5 received slice 80
+Process 6 received slice 80
+Process 7 received slice 80
+Broadcasting slice = 82
+Process 8 received slice 81
+Process 5 received slice 81
+Process 7 received slice 81
+Process 6 received slice 81
+Broadcasting slice = 83
+Process 8 received slice 82
+Process 5 received slice 82
+Process 6 received slice 82
+Process 7 received slice 82
+Broadcasting slice = 84
+Process 8 received slice 83
+Process 5 received slice 83
+Process 6 received slice 83
+Process 7 received slice 83
+Broadcasting slice = 85
+Process 8 received slice 84
+Process 5 received slice 84
+Process 6 received slice 84
+Process 7 received slice 84
+Broadcasting slice = 86
+Process 8 received slice 85
+Process 5 received slice 85
+Process 7 received slice 85
+Process 6 received slice 85
+Broadcasting slice = 87
+Process 8 received slice 86
+Process 5 received slice 86
+Process 7 received slice 86
+Process 6 received slice 86
+Broadcasting slice = 88
+Process 8 received slice 87
+Process 5 received slice 87
+Process 7 received slice 87
+Process 6 received slice 87
+Broadcasting slice = 89
+Process 8 received slice 88
+Process 5 received slice 88
+Process 7 received slice 88
+Process 6 received slice 88
+Broadcasting slice = 90
+Process 8 received slice 89
+Process 5 received slice 89
+Process 6 received slice 89
+Process 7 received slice 89
+Broadcasting slice = 91
+Process 8 received slice 90
+Process 5 received slice 90
+Process 7 received slice 90
+Process 6 received slice 90
+Broadcasting slice = 92
+Process 8 received slice 91
+Process 5 received slice 91
+Process 7 received slice 91
+Process 6 received slice 91
+Broadcasting slice = 93
+Process 8 received slice 92
+Process 5 received slice 92
+Process 6 received slice 92
+Process 7 received slice 92
+Broadcasting slice = 94
+Process 8 received slice 93
+Process 5 received slice 93
+Process 7 received slice 93
+Process 6 received slice 93
+Broadcasting slice = 95
+Process 8 received slice 94
+Process 5 received slice 94
+Process 7 received slice 94
+Process 6 received slice 94
+Broadcasting slice = 96
+Process 8 received slice 95
+Process 5 received slice 95
+Process 7 received slice 95
+Process 6 received slice 95
+Broadcasting slice = 97
+Process 8 received slice 96
+Process 5 received slice 96
+Process 7 received slice 96
+Process 6 received slice 96
+Broadcasting slice = 98
+Process 8 received slice 97
+Process 5 received slice 97
+Process 7 received slice 97
+Process 6 received slice 97
+Broadcasting slice = 99
+Process 8 received slice 98
+Process 5 received slice 98
+Process 7 received slice 98
+Process 6 received slice 98
+Calculating Overall Mean
+Process 8 received slice 99
+Process 5 received slice 99
+Process 6 received slice 99
+Process 7 received slice 99
+Process 8 has data <250, 499> <250, 499> <50, 99> , mean = 94.899671
+Process 1 has data <0, 249> <0, 249> <0, 49> , mean = 675.232280
+Process 3 has data <0, 249> <250, 499> <0, 49> , mean = 684.189045
+Process 2 has data <250, 499> <0, 249> <0, 49> , mean = 108.635338
+Process 4 has data <250, 499> <250, 499> <0, 49> , mean = 109.950375
+Process 5 has data <0, 249> <0, 249> <50, 99> , mean = 599.232631
+Process 6 has data <250, 499> <0, 249> <50, 99> , mean = 94.162117
+Process 7 has data <0, 249> <250, 499> <50, 99> , mean = 610.276050
+Process 0 receives local means [ 675.23227996  108.63533771  684.18904451  109.95037489  599.2326306
+   94.16211723  610.27604998   94.89967092] and the overall mean = 372.072188
+Application 23957443 resources: utime ~21s, stime ~9s, Rss ~223676, inblocks ~456912, outblocks ~56

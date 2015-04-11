@@ -3,7 +3,7 @@
 ### set the number of PEs per node
 #PBS -l nodes=9:ppn=16:xe
 ### set the wall clock time
-#PBS -l walltime=00:05:00
+#PBS -l walltime=00:45:00
 ### set the job name
 #PBS -N sh_program1
 ### set the job stdout and stderr

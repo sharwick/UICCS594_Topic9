@@ -1,0 +1,12 @@
+----------------------------------------
+Begin Torque Prologue on nid25258
+at Sat Apr 11 17:25:00 CDT 2015
+Job Id:			1561082.nid11293
+Username:		tra834
+Group:			TRAIN_jt2
+Job name:		sh_program1
+Requested resources:	neednodes=9:ppn=16:xe,nodes=9:ppn=16:xe,walltime=00:45:00
+Queue:			normal
+Account:		jt2
+End Torque Prologue:  0.046 elapsed
+----------------------------------------

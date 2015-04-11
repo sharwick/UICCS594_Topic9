@@ -67,18 +67,49 @@ else:
 	comm.Recv([data,MPI.INT],source=0,tag=77)
 	[xmin,xmax,ymin,ymax,zmin,zmax] = np.asarray(data)
 	sys.stdout.write("Process %d received %s\n" %(rank, str([xmin,xmax,ymin,ymax,zmin,zmax])))
+	subset = np.empty([xmax-xmin+1,ymax-ymin+1,zmax-zmin+1]) # Initialize subset matrix, to be filled in by slice later
+	[xN,yN,zN] = [0,0,0] # initialize
 
-
-sys.stdout.write("Process %d: %s\n" % (rank, str(data.shape)))
+sys.stdout.write("Process %d: %s\n\n" % (rank, str(data.shape)))
 
 # Broadcast data.  Each node keeps only the data assigned to it.
-comm.Barrier()
-data = comm.bcast(data, root=0)
 
+#for z in range(max(zmax,zN)):
+for z in range(100):
+	if rank==0:
+		if z==0:
+			sys.stdout.write("(zmin, zmax,zN) = (%d, %d,%d)\n" %(zmin, zmax, zN))
+		sys.stdout.write("Broadcasting slice = %d\n" %(z))
+		comm.Barrier()
+		data[:,:,z] = comm.bcast(data[:,:,z], root=0)
+		comm.Barrier()
+	else:
+		comm.Barrier()
+		slice = comm.bcast(slice,root=0)
+		comm.Barrier()
 
-comm.Barrier()
+	if ( (rank != 0) and (z>=zmin) and (z<=zmax) ):
+		subset[:,:,z-zmin] = slice[xmin:xmax+1, ymin:ymax+1]
+		sys.stdout.write("Process %d received slice %d\n" %(rank, z))
 
 
 # Each node calculates its mean and reports to node 0, which then calculates total mean.
+if rank!=0:	 
+	mean = np.mean(subset)	 
+	sys.stdout.write("Process %d has data <%d, %d> <%d, %d> <%d, %d> , mean = %f\n" % (rank,xmin, xmax, ymin, ymax, zmin, zmax, mean)) 
+	comm.Send(mean, dest=0, tag=13)
 
+else:
+	sys.stdout.write("Calculating Overall Mean\n")
+	mean = np.arange(nproc,dtype=np.float64)
+	for i in range(nproc):
+		d = np.arange(1,dtype=np.float64)
+		comm.Recv(d, source=i+1, tag=13)
+		mean[i] = d[0]
+		
+	meanOverall = np.mean(mean)
+	
+	sys.stdout.write("Process 0 receives local means %s and the overall mean = %f\n" % (str(mean),meanOverall))
+
+# Final answer should be: 372.072
 
