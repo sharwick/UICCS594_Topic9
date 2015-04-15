@@ -24,6 +24,8 @@
   intermediate steps)
 - task2.err = Error log for task 2 code
 - task2.out = Output log for task 2 code
+- image.ppm = Composite 2D image resulting from compositing the images from
+  produced by individual processes.
 
 ##################
 # Notes
@@ -35,5 +37,5 @@
 - The input data has a 3 integer header, which I removed to construct my
   dataset of floats. 
 - For task 2, I set alpha = .05 for all points and use Back-to-Front Compositing.
-
+- Task 2 outputs image.ppm using the ppm format recommended in the assignment.
 

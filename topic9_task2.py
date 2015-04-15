@@ -8,7 +8,7 @@ size = MPI.COMM_WORLD.Get_size()
 rank = MPI.COMM_WORLD.Get_rank()
 name = MPI.Get_processor_name()
 alpha = .05
-cinit = (0,0,0)
+cinit = (0.0,0.0,0.0)
 
 # The following code is taken from: http://code.activestate.com/recipes/52273-colormap-returns-an-rgb-tuple-on-a-0-to-255-scale-/
 def floatRgb(mag, cmin, cmax):
@@ -26,12 +26,18 @@ def floatRgb(mag, cmin, cmax):
        blue = min((max((4*(0.75-x), 0.)), 1.))
        red  = min((max((4*(x-0.25), 0.)), 1.))
        green= min((max((4*math.fabs(x-0.5)-1., 0.)), 1.))
-       return (red, green, blue)
+       return [red, green, blue]
 
 def floatRgb2(mag):
 	g = lambda x: floatRgb(x,-5000,5000)
 	return g
+floatRgbV = np.vectorize(floatRgb)
 
+#if rank==0:
+#	sys.stdout.write("floatRgbV([100,200],-5000,5000) = %s\n" % (str(floatRgbV([100,200],-5000,5000))))
+#	sys.stdout.write("floatRgb(100,-5000,5000) = %s\n" % (str(floatRgb(100,-5000,5000))))
+#	sys.stdout.write("floatRgb2(100) = %s\n" % (str(floatRgb2(100))))
+#	sys.stdout.write("floatRgbV([100,200]) = %s\n" % (str(floatRgbV([100,200]))))
 
 # Process 0 divides up the data and sends bounds to each other node
 if rank == 0:
@@ -121,28 +127,41 @@ for z in range(100):
 # Each node calculates its mean and reports to node 0, which then calculates total mean.
 if rank!=0:
 	dims = []
-	dims.append(data.shape)
+	#dims.extend(subset[:,:,i].shape)
+	dims.extend( (subset.shape[0], subset.shape[1]))
 	dims.append(3)
 	sys.stdout.write("Rank = %d, Dims = %s\n" % (rank, str(dims)))
 	 
-	cout = np.array( [cinit for i in range( data.size)]).reshape(dims)
+	cout = np.array( [cinit for i in range( dims[0]*dims[1] )]).reshape(dims)
 	sys.stdout.write("cout dimensions for rank=%d = %s\n" % (rank, str(cout.shape)))
 	
-	for i in range(zmax):
-		cin = map(floatRgb2, subset[:,:,i])
-		cout = (1-alpha)*cout + alpha*cin
+	for i in range(zmax-zmin+1):
+		#cin = map(floatRgb2, subset[:,:,i])
+#		cin = np.array(floatRgbV(np.reshape(subset[:,:,i],(1,500*500)),-5000,5000))
+#		cin = np.reshape(cin,(500,500))
+
+		cin = np.array( [cinit for i in range( dims[0]*dims[1] )]).reshape(dims)
+		for x in range(dims[0]):
+			for y in range(dims[1]):
+				cin[x,y] = floatRgb(subset[x,y,i],-5000,5000)
+
+		if i==0:
+			sys.stdout.write("cin dimensions for rank=%d = %s, cin[0,0] = %s\n" % (rank, str(cin.shape), str(cin[0,0])))
+		cout = [ [[(1-alpha)*x for x in y] for y in z] for z in  cout] + [ [[(alpha)*x for x in y] for y in z] for z in  cin]
 	
+	sys.stdout.write("Rank=%d, data = %s\n" % (rank, str(cout[0,0,:])))
+		
 	comm.Send(cout, dest=0, tag=13)
 
 else:
 	sys.stdout.write("Calculating Overall Image\n")
 
-	dims = [xsize, ysize, nproc,3]
-	allData = np.arange(data.size*3,dtype=np.float64).reshape(dims)
+	dims = [xSize, ySize, nproc,3]
+	allData = np.arange(xSize*ySize*nproc*3,dtype=np.float64).reshape(dims)
 
 	for i in range(nproc):
-		d = np.arange(xsize*ysize*3,dtype=np.float64)
-		d.reshape((xsize,ysize,3))
+		d = np.arange(xSize*ySize*3,dtype=np.float64)
+		d.reshape((xSize,ySize,3))
 		comm.Recv(d, source=i+1, tag=13)
 		allData[:,:,i,:] = d
 
@@ -150,8 +169,24 @@ else:
 	
 	for i in range(1,nproc):
 		finalData = (1-alpha)*finalData + alpha*allData[:,:,i,:]
-		
+		finalData =  [ [[(1-alpha)*x for x in y] for y in z] for z in  finalData] + [ [[(alpha)*x for x in y] for y in z] for z in  allData]
 	
 	sys.stdout.write("Final results (rank=%d): %s \n" % (rank,str(finalData.shape),str(finalData)))
+
+
+	# Write file
+	f = open('image.ppm','w')
+	f.write("P6\n")
+	f.write("# image.ppm\n")
+	f.write(str(xSize) + ' ' + str(ySize) + '\n')
+	f.write('255\n')
+
+	for x in finalData:
+		for y in x:
+			for z in y:
+				f.write(str(round(z*255,0)) + " ")
+		f.write('\n')
+
+	f.close()
 
 
